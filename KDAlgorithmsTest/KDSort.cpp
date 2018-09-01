@@ -110,6 +110,55 @@ int *KDHeapSort(int *numbers,int lenght)
 }
 
 //归并排序
+void KDMerge(int *numbers,int left,int middle,int right,int sortedArr[])
+{
+		int i = left;
+		int j = middle + 1;
+		int index = 0;
+		while(i <= middle && j <= right)
+		{
+			if (numbers[i] <= numbers[j])
+			{
+				sortedArr[index++] = numbers[i++];
+			}else
+			{
+				sortedArr[index++] = numbers[j++];
+			}
+		}
+
+
+		while (i <= middle)
+		{
+			sortedArr[index ++] = numbers[i++];
+		}
+
+		while(j <= right)
+		{
+			sortedArr[index ++] = numbers[j++];
+		}
+
+		//下面这个是重点
+		index= 0;
+		while(left <= right)
+		{
+			numbers[left++] = sortedArr[index++];
+		}
+}
+
+int * KDMergeSort(int *numbers,int left,int right,int sortedArr[])
+{
+	if (left < right)
+	{
+		int middle = (right - left) / 2 + left;
+		KDMergeSort(numbers,left,middle,sortedArr);
+		KDMergeSort(numbers,middle + 1,right,sortedArr);
+		KDMerge(numbers,left,middle,right,sortedArr);
+	}
+	return numbers;
+}
+
+
+
 
 int main()
 {
@@ -119,7 +168,9 @@ int main()
 	// int *newnumbers = KDInsertSort(numbers,7);
 	// int *newnumbers = KDBubbleSort(numbers,7);
 	// int *newnumbers = KDSelectSort(numbers,7);
-	int *newnumbers = KDHeapSort(numbers,7);
+	//int *newnumbers = KDHeapSort(numbers,7);
+	int sortedArr[] = {0,0,0,0,0,0,0};
+	int  *newnumbers = KDMergeSort(numbers,0,6,sortedArr);
 	cout<<"----"<<endl;
 	KDPrintfArray(newnumbers,7);
 }
