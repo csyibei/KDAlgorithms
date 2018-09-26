@@ -86,6 +86,7 @@ void KDHeapAdjust(int *numbers,int rootIndex,int lenght)
 
 		if (numbers[i] > temp)
 		{
+			//这里面是重点（要想清为什么不swap）
 			// KDSwap(numbers,i,rootIndex);
 			numbers[rootIndex] = numbers[i];
 			rootIndex = i;
@@ -157,7 +158,7 @@ int * KDMergeSort(int *numbers,int left,int right,int sortedArr[])
 	return numbers;
 }
 
-
+//快排
 
 
 int main()
