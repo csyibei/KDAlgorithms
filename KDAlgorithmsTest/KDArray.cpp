@@ -39,6 +39,7 @@ bool KDFindNumberInArr(int *numbers,int rows,int columns,int number)
 {
 	int currentRow = 0;
 	int currentColumn =  columns - 1;
+	//下面注释掉了错误写法 不能比完列再比行  因为这样会直接错过存在的数 必须行列变化交替进行 建议自己画图分析
 	// while(number <= numbers[currentRow*columns+currentColumn] && currentColumn >= 0)
 	// {
 	// 	if (number == numbers[currentRow*columns+currentColumn])
